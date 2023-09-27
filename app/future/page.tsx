@@ -1,38 +1,37 @@
+import moment from "moment";
 import React from "react";
 import { googleSheetsAPI } from "../types/API";
 import { SingleZaffe } from "../types/SingleZaffe";
 import { MenuFuture } from "./components/MenuFuture";
-import moment from "moment";
-
 
 const Tab = async () => {
   const res = await fetch(googleSheetsAPI, {
     next: {
-    	revalidate: 30
+      revalidate: 60,
     },
-    cache: "no-store", // it is store(true) by default
+
   });
 
   const zaffat: { data: SingleZaffe[] } = await res.json();
 
-	const futureZaffat = zaffat.data.filter((z) => {
-		// Parse the date string using Moment.js and compare it to the current date
-		return moment(z.date, "DD/MM/YYYY").isAfter(moment());
-	});
-	
-	// Create a new array to store unique dates
-	const uniqueDates: string[] = [];
-	
-	futureZaffat.forEach((z) => {
-		// Format the date using Moment.js as "DD-MM-YYYY"
-		const formattedDate = moment(z.date, "DD/MM/YYYY").format("DD-MM-YYYY");
-	
-		// Check if the formatted date is already in the uniqueDates array
-		if (!uniqueDates.includes(formattedDate)) {
-			uniqueDates.push(formattedDate);
-		}
-	});
-	
+  const futureZaffat = zaffat.data.filter((z) => {
+    // Parse the date string using Moment.js and compare it to the current date
+    return moment(z.date, "DD/MM/YYYY").isAfter(moment(),  'day');
+  });
+
+
+  // Create a new array to store unique dates
+  const uniqueDates: string[] = [];
+
+  futureZaffat.forEach((z) => {
+    // Format the date using Moment.js as "DD-MM-YYYY"
+    const formattedDate = moment(z.date, "DD/MM/YYYY").format("DD-MM-YYYY");
+
+    // Check if the formatted date is already in the uniqueDates array
+    if (!uniqueDates.includes(formattedDate)) {
+      uniqueDates.push(formattedDate);
+    }
+  });
 
   return (
     <section className={"mt-10"}>
