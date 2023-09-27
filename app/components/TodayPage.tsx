@@ -23,7 +23,7 @@ export const TodayPage = async () => {
   
   return (
     <>
-      {todaysZaffat.map((z, idx) => (
+      {zaffat.data.map((z, idx) => (
         <SingleEntry key={idx} zaffe={z} />
       ))}
 
