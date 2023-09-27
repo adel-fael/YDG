@@ -5,9 +5,9 @@ import { SingleEntry } from "./SingleEntry";
 
 export const TodayPage = async () => {
   const res = await fetch(googleSheetsAPI, {
-    // next: {
-    // 	revalidate: 10
-    // }
+    next: {
+    	revalidate: 30
+    },
     cache: "no-store", // it is store(true) by default
   });
 
