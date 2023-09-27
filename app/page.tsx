@@ -20,14 +20,14 @@ const Home = async () => {
   });
 
   const todaysZaffat = zaffat.data.filter((z) => {
-    const zaffeDate = moment(z.date, "DD/MM/YYYY").format("DD-MM-YYYY");
-    return zaffeDate === moment().format("DD-MM-YYYY");
+    const zaffeDate = moment(z.date, "DD/MM/YYYY");
+    return zaffeDate.isSame(moment(), "day");
   });
-
+  
   return (
     <main className="">
       {todaysZaffat.map((z, idx) => (
-        <SingleEntry key={idx} zaffe={z} displayDateAsTitle={true} />
+        <SingleEntry key={idx} zaffe={z} />
       ))}
 
       {todaysZaffat.length === 0 ? (
