@@ -1,13 +1,10 @@
-
 import moment from "moment";
-import { SingleEntry } from "./SingleEntry";
 import { googleSheetsAPI } from "../types/API";
 import { SingleZaffe } from "../types/SingleZaffe";
-
-
+import { SingleEntry } from "./SingleEntry";
 
 export const TodayPage = async () => {
-	const res = await fetch(googleSheetsAPI, {
+  const res = await fetch(googleSheetsAPI, {
     // next: {
     // 	revalidate: 10
     // }
@@ -16,18 +13,22 @@ export const TodayPage = async () => {
 
   const zaffat: { data: SingleZaffe[] } = await res.json();
 
-  const todaysZaffat = zaffat.data.filter((z) => {
-    const zaffeDate = moment(z.date, "DD/MM/YYYY");
-    return zaffeDate.isSame(moment(), "day");
-  });
-  
+  // const todaysZaffat = zaffat.data.filter((z) => {
+  //   const zaffeDate = moment(z.date, "DD/MM/YYYY");
+  //   return zaffeDate.isSame(moment(), "day");
+  // });
+
   return (
     <>
-      {zaffat.data.map((z, idx) => (
-        <SingleEntry key={idx} zaffe={z} />
-      ))}
+      {zaffat.data
+        .filter((z) => moment(z.date, "DD/MM/YYYY").isSame(moment(), "day"))
+        .map((z, idx) => (
+          <SingleEntry key={idx} zaffe={z} />
+        ))}
 
-      {todaysZaffat.length === 0 ? (
+      {zaffat.data.filter((z) =>
+        moment(z.date, "DD/MM/YYYY").isSame(moment(), "day"),
+      ).length === 0 ? (
         <div className="alert alert-info ml-auto mr-auto mt-5 w-[75vw]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -47,4 +48,4 @@ export const TodayPage = async () => {
       ) : null}
     </>
   );
-}
+};
