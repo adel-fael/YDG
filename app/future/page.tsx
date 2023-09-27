@@ -14,11 +14,13 @@ const Tab = async () => {
 
   const zaffat: { data: SingleZaffe[] } = await res.json();
 
-  const futureZaffat = zaffat.data.filter((z) => {
-    // Parse the date string using Moment.js and compare it to the current date
-    return moment(z.date, "DD/MM/YYYY").isAfter(moment(),  'day');
-  });
+  const today = new Date().toLocaleDateString(); // Get the current date as a string in "MM/DD/YYYY" format
 
+  const futureZaffat = zaffat.data.filter((z) => {
+    const zaffeDate = new Date(z.date.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3')).toLocaleDateString();
+    return zaffeDate > today;
+  });
+  
 
   // Create a new array to store unique dates
   const uniqueDates: string[] = [];
