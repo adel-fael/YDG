@@ -2,7 +2,6 @@
 
 import { SingleEntry } from "@/app/components/SingleEntry";
 import { SingleZaffe } from "@/app/types/SingleZaffe";
-import moment from "moment";
 import { useParams } from "next/navigation";
 
 type SpecificDayZaffatProps = {
