@@ -35,7 +35,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${openSans.variable} ${plexSans.variable}`}>
-      <body className="flex flex-col h-[100vh]">
+      <body>
+        
+      <Footer />
+
+      
         <nav className="flex justify-center p-10 ">
           <ThemeChanger />
         </nav>
@@ -44,7 +48,6 @@ export default function RootLayout({
 
         {children}
 
-        <Footer />
       </body>
     </html>
   );

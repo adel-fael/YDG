@@ -6,7 +6,7 @@ const FutureSpecificDay = async () => {
   const { zaffat } = await useZaffat();
 
   return (
-    <section className="flex-1">
+    <section>
       <BreadCrumbs />
 
       <SpecificDayZaffat zaffat={zaffat} />
