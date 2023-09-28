@@ -3,6 +3,6 @@ export type SingleZaffe = {
   place: string;
   costume: string;
   music: string;
-  team: string;
+  team: string[];
   additionalInfo: string;
 };

@@ -19,10 +19,10 @@ export const useZaffat = async () => {
       zaffat: result.data,
     };
 
-		
+
   } catch (error) {
+    console.error("🚀 ~ file: Endpoint.tsx:24 ~ useZaffat ~ An error occurred while fetching data:", error)
     // Handle the error here or re-throw it if you want to handle it elsewhere
-    console.error("An error occurred while fetching data:", error);
     throw error; // You can re-throw the error if needed
   }
 };
