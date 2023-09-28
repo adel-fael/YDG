@@ -1,6 +1,11 @@
 import { useZaffat } from "../helper/Endpoint";
 import { MenuFuture } from "./components/MenuFuture";
 
+type DateWithCount = {
+  date: string;
+  count: number;
+};
+
 const FuturePage = async () => {
   const { zaffat } = await useZaffat();
 
@@ -11,24 +16,24 @@ const FuturePage = async () => {
     return zaffeDate > today;
   });
 
-  // Create a new array to store unique dates
-  const uniqueDates: string[] = [];
-
-  futureZaffat.forEach((z) => {
-    // Format the date using Moment.js as "DD-MM-YYYY"
+  const uniqueDatesWithCounts: DateWithCount[] = futureZaffat.reduce((acc: DateWithCount[], z: any) => {
     const formattedDate = new Date(z.date).toLocaleDateString("fr-CA");
-
-    // Check if the formatted date is already in the uniqueDates array
-    if (!uniqueDates.includes(formattedDate)) {
-      uniqueDates.push(formattedDate);
+    const existingDate = acc.find((item) => item.date === formattedDate);
+  
+    if (existingDate) {
+      existingDate.count++;
+    } else {
+      acc.push({ date: formattedDate, count: 1 });
     }
-  });
+  
+    return acc;
+  }, []);
 
   return (
     <section className={"mt-10"}>
       <ul className="menu rounded-box menu-lg ml-auto mr-auto w-56 bg-base-200">
-        {uniqueDates.map((date, idx) => (
-          <MenuFuture key={idx} day={date} />
+        {uniqueDatesWithCounts.map((entry, idx) => (
+          <MenuFuture key={idx} day={entry.date}  zaffeCount={entry.count}/>
         ))}
       </ul>
 

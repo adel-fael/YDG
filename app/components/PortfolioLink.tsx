@@ -7,7 +7,7 @@ export const PortfolioLink = () => {
     <Link
       href={"https://adelfael.netlify.app/"}
       target="_blank"
-      className="btn btn-primary items-center"
+      className="btn btn-accent items-center"
     >
       Adel
       <svg
