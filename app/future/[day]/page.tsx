@@ -6,11 +6,11 @@ const FutureSpecificDay = async () => {
   const { zaffat } = await useZaffat();
 
   return (
-    <div>
+    <section className="flex-1">
       <BreadCrumbs />
 
       <SpecificDayZaffat zaffat={zaffat} />
-    </div>
+    </section>
   );
 };
 

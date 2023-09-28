@@ -25,7 +25,7 @@ const FuturePage = async () => {
   });
 
   return (
-    <section className={"mt-10"}>
+    <section className={"mt-10 flex-1"}>
       <ul className="menu rounded-box menu-lg ml-auto mr-auto w-56 bg-base-200">
         {uniqueDates.map((date, idx) => (
           <MenuFuture key={idx} day={date} />

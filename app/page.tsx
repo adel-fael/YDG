@@ -3,9 +3,9 @@ import { TodayPage } from "./components/TodayPage";
 
 const Home = () => {
   return (
-    <main className="">
+    <section className="">
       <TodayPage />
-    </main>
+    </section>
   );
 };
 
