@@ -14,10 +14,11 @@ export const SpecificDayZaffat: React.FC<SpecificDayZaffatProps> = ({
 }) => {
   const { day } = useParams();
 
-  const specificDayZaffat = zaffat.filter(
-    (z) => moment(z.date, "DD/MM/YYYY").format("DD-MM-YYYY") === day,
-  );
-
+  const specificDayZaffat = zaffat.filter((z) => {
+    const zaffeDate = new Date(z.date).toLocaleDateString('fr-CA')
+    return zaffeDate === day;
+  });
+  
   return (
     <>
       {specificDayZaffat.map((z, idx) => (

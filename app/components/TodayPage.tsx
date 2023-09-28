@@ -13,10 +13,10 @@ export const TodayPage = async () => {
 
   const zaffat: { data: SingleZaffe[] } = await res.json();
 
-	const today = new Date().toLocaleDateString(); // Get the current date as a string in "MM/DD/YYYY" format
+	const today = new Date().toLocaleDateString('fr-CA'); // Get the current date as a string in "MM/DD/YYYY" format
 
 	const todaysZaffat = zaffat.data.filter((z) => {
-		const zaffeDate = new Date(z.date.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3')).toLocaleDateString();
+		const zaffeDate = new Date(z.date).toLocaleDateString('fr-CA');
 		return zaffeDate === today;
 	});
 	
