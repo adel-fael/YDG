@@ -1,20 +1,13 @@
-import { googleSheetsAPI } from "../types/API";
-import { SingleZaffe } from "../types/SingleZaffe";
+import { useZaffat } from "../helper/Endpoint";
 import { SingleEntry } from "./SingleEntry";
 
 export const TodayPage = async () => {
-  const res = await fetch(googleSheetsAPI, {
-    // next: {
-    // 	revalidate: 60
-    // },
-    // cache: "no-store",
-  });
 
-  const zaffat: { data: SingleZaffe[] } = await res.json();
+  const { zaffat } = await useZaffat();
 
   const today = new Date().toLocaleDateString("fr-CA"); // Get the current date as a string in "MM/DD/YYYY" format
 
-  const todaysZaffat = zaffat.data.filter((z) => {
+  const todaysZaffat = zaffat.filter((z) => {
     const zaffeDate = new Date(z.date).toLocaleDateString("fr-CA");
     return zaffeDate === today;
   });

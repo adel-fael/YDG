@@ -1,32 +1,22 @@
-
-import { googleSheetsAPI } from "../types/API";
-import { SingleZaffe } from "../types/SingleZaffe";
+import { useZaffat } from "../helper/Endpoint";
 import { MenuFuture } from "./components/MenuFuture";
 
-const Tab = async () => {
-  const res = await fetch(googleSheetsAPI, {
-    // next: {
-    //   revalidate: 60,
-    // },
-    // cache: 'no-store'
-  });
+const FuturePage = async () => {
+  const { zaffat } = await useZaffat();
 
-  const zaffat: { data: SingleZaffe[] } = await res.json();
+  const today = new Date().toLocaleDateString("fr-CA");
 
-  const today = new Date().toLocaleDateString('fr-CA'); 
-
-  const futureZaffat = zaffat.data.filter((z) => {
-    const zaffeDate = new Date(z.date).toLocaleDateString('fr-CA');
+  const futureZaffat = zaffat.filter((z) => {
+    const zaffeDate = new Date(z.date).toLocaleDateString("fr-CA");
     return zaffeDate > today;
   });
-  
 
   // Create a new array to store unique dates
   const uniqueDates: string[] = [];
 
   futureZaffat.forEach((z) => {
     // Format the date using Moment.js as "DD-MM-YYYY"
-    const formattedDate = new Date(z.date).toLocaleDateString('fr-CA');
+    const formattedDate = new Date(z.date).toLocaleDateString("fr-CA");
 
     // Check if the formatted date is already in the uniqueDates array
     if (!uniqueDates.includes(formattedDate)) {
@@ -64,4 +54,4 @@ const Tab = async () => {
   );
 };
 
-export default Tab;
+export default FuturePage;
