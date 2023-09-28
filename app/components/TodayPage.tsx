@@ -1,30 +1,29 @@
-
 import { googleSheetsAPI } from "../types/API";
 import { SingleZaffe } from "../types/SingleZaffe";
 import { SingleEntry } from "./SingleEntry";
 
 export const TodayPage = async () => {
   const res = await fetch(googleSheetsAPI, {
-    next: {
-    	revalidate: 60
-    },
-
+    // next: {
+    // 	revalidate: 60
+    // },
+    // cache: "no-store",
   });
 
   const zaffat: { data: SingleZaffe[] } = await res.json();
 
-	const today = new Date().toLocaleDateString('fr-CA'); // Get the current date as a string in "MM/DD/YYYY" format
+  const today = new Date().toLocaleDateString("fr-CA"); // Get the current date as a string in "MM/DD/YYYY" format
 
-	const todaysZaffat = zaffat.data.filter((z) => {
-		const zaffeDate = new Date(z.date).toLocaleDateString('fr-CA');
-		return zaffeDate === today;
-	});
-	
+  const todaysZaffat = zaffat.data.filter((z) => {
+    const zaffeDate = new Date(z.date).toLocaleDateString("fr-CA");
+    return zaffeDate === today;
+  });
+
   return (
     <>
       {todaysZaffat.map((z, idx) => (
-          <SingleEntry key={idx} zaffe={z} />
-        ))}
+        <SingleEntry key={idx} zaffe={z} />
+      ))}
 
       {todaysZaffat.length === 0 ? (
         <div className="alert alert-info ml-auto mr-auto mt-5 w-[75vw]">

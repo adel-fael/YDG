@@ -5,10 +5,10 @@ import { SpecificDayZaffat } from "./SpecificDayZaffat";
 
 const FutureSpecificDay = async () => {
   const res = await fetch(googleSheetsAPI, {
-    next: {
-    	revalidate: 60
-    },
-
+    // next: {
+    // 	revalidate: 60
+    // },
+    // cache: 'no-store'
   });
 
   const zaffat: { data: SingleZaffe[] } = await res.json();

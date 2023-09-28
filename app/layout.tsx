@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { TabBar } from "./components/TabBar";
-import { ThemeSelector } from "./components/ThemeSelector";
+import { ThemeChanger } from "./components/ThemeChanger";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="flex justify-center p-10 ">
-          <ThemeSelector />
+          <ThemeChanger />
         </div>
 
         <TabBar />

@@ -1,15 +1,14 @@
 
-import React from "react";
 import { googleSheetsAPI } from "../types/API";
 import { SingleZaffe } from "../types/SingleZaffe";
 import { MenuFuture } from "./components/MenuFuture";
 
 const Tab = async () => {
   const res = await fetch(googleSheetsAPI, {
-    next: {
-      revalidate: 60,
-    },
-
+    // next: {
+    //   revalidate: 60,
+    // },
+    // cache: 'no-store'
   });
 
   const zaffat: { data: SingleZaffe[] } = await res.json();
