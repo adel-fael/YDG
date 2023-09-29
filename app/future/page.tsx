@@ -16,28 +16,35 @@ const FuturePage = async () => {
     return zaffeDate > today;
   });
 
-  const uniqueDatesWithCounts: DateWithCount[] = futureZaffat.reduce((acc: DateWithCount[], z: any) => {
-    const formattedDate = new Date(z.date).toLocaleDateString("fr-CA");
-    const existingDate = acc.find((item) => item.date === formattedDate);
-  
-    if (existingDate) {
-      existingDate.count++;
-    } else {
-      acc.push({ date: formattedDate, count: 1 });
-    }
-  
-    return acc;
-  }, []);
+  const uniqueDatesWithCounts: DateWithCount[] = futureZaffat.reduce(
+    (acc: DateWithCount[], z: any) => {
+      const formattedDate = new Date(z.date).toLocaleDateString("fr-CA");
+      const existingDate = acc.find((item) => item.date === formattedDate);
+
+      if (existingDate) {
+        existingDate.count++;
+      } else {
+        acc.push({ date: formattedDate, count: 1 });
+      }
+
+      return acc;
+    },
+    [],
+  );
+
+  const isFutureZaffatEmpty = futureZaffat.length === 0 ? true : false;
 
   return (
     <section className={"mt-10"}>
-      <ul className="menu rounded-box menu-lg ml-auto mr-auto w-56 bg-base-200">
-        {uniqueDatesWithCounts.map((entry, idx) => (
-          <MenuFuture key={idx} day={entry.date}  zaffeCount={entry.count}/>
-        ))}
-      </ul>
+      {!isFutureZaffatEmpty ? (
+        <ul className="menu rounded-box menu-lg ml-auto mr-auto w-56 bg-base-200">
+          {uniqueDatesWithCounts.map((entry, idx) => (
+            <MenuFuture key={idx} day={entry.date} zaffeCount={entry.count} />
+          ))}
+        </ul>
+      ) : null}
 
-      {futureZaffat.length === 0 ? (
+      {isFutureZaffatEmpty ? (
         <div className="alert alert-info ml-auto mr-auto mt-5 w-[75vw]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
