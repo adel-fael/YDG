@@ -16,8 +16,6 @@ export const SingleEntry: React.FC<SingleEntryProps> = ({
         {displayDateAsTitle ? zaffe.date : zaffe.place}
       </div>
       <div className="collapse-content bg-primary font-medium text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content ">
-
-
         <div className="flow-root ">
           <dl className="-my-3 divide-y  text-sm">
             {displayDateAsTitle ? (
@@ -32,15 +30,17 @@ export const SingleEntry: React.FC<SingleEntryProps> = ({
               <dd className="font-bold sm:col-span-2">{zaffe.costume}</dd>
             </div>
 
-            <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-              <dt className="font-normal">Music:</dt>
-              <dd className="font-bold sm:col-span-2">{zaffe.music}</dd>
-            </div>
+            {zaffe.music ? (
+              <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                <dt className="font-normal">Music:</dt>
+                <dd className="font-bold sm:col-span-2">{zaffe.music}</dd>
+              </div>
+            ) : null}
 
             <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
               <dt className="font-normal">Team:</dt>
               <dd className="font-bold sm:col-span-2">
-                <ul className="list-decimal ml-5">
+                <ul className="ml-5 list-decimal">
                   {zaffe.team.map((t, idx) => (
                     <li key={idx}>{t}</li>
                   ))}
@@ -54,6 +54,20 @@ export const SingleEntry: React.FC<SingleEntryProps> = ({
                 {zaffe.additionalInfo}
               </dd>
             </div>
+
+            {zaffe.cake === "True" ? (
+              <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                <dt className="font-normal">Cake:</dt>
+                <dd className="font-bold sm:col-span-2">✅</dd>
+              </div>
+            ) : null}
+
+            {zaffe.janoubi === "True" ? (
+              <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                <dt className="font-normal">Janoubi:</dt>
+                <dd className="font-bold sm:col-span-2">✅</dd>
+              </div>
+            ) : null}
           </dl>
         </div>
 

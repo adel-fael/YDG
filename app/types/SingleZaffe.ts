@@ -5,4 +5,6 @@ export type SingleZaffe = {
   music: string;
   team: string[];
   additionalInfo: string;
+  cake: "False" | "True"
+  janoubi: "False" | "True"
 };
