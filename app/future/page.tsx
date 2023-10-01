@@ -35,9 +35,9 @@ const FuturePage = async () => {
   const isFutureZaffatEmpty = futureZaffat.length === 0 ? true : false;
 
   return (
-    <section className={"mt-10"}>
+    <section className="">
       {!isFutureZaffatEmpty ? (
-        <ul className="menu rounded-box menu-lg ml-auto mr-auto w-56 bg-base-200">
+        <ul className="menu rounded-box menu-lg ml-auto mr-auto mt-5 w-56 bg-base-200">
           {uniqueDatesWithCounts.map((entry, idx) => (
             <MenuFuture key={idx} day={entry.date} zaffeCount={entry.count} />
           ))}
