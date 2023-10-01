@@ -55,14 +55,14 @@ export const SingleEntry: React.FC<SingleEntryProps> = ({
               </dd>
             </div>
 
-            {zaffe.cake === "True" ? (
+            {zaffe.cake === "TRUE" ? (
               <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
                 <dt className="font-normal">Cake:</dt>
                 <dd className="font-bold sm:col-span-2">✅</dd>
               </div>
             ) : null}
 
-            {zaffe.janoubi === "True" ? (
+            {zaffe.janoubi === "TRUE" ? (
               <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
                 <dt className="font-normal">Janoubi:</dt>
                 <dd className="font-bold sm:col-span-2">✅</dd>
