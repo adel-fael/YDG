@@ -5,24 +5,24 @@ import { SingleZaffe } from "@/app/types/SingleZaffe";
 import { useParams } from "next/navigation";
 
 type SpecificDayZaffatProps = {
-	zaffat: SingleZaffe[];
+  zaffat: SingleZaffe[];
 };
 
 export const SpecificDayZaffat: React.FC<SpecificDayZaffatProps> = ({
-	zaffat,
+  zaffat,
 }) => {
-	const { day } = useParams();
+  const { day } = useParams();
 
-	const specificDayZaffat = zaffat.filter((z) => {
-		const zaffeDate = new Date(z.date).toLocaleDateString("fr-CA");
-		return zaffeDate === day;
-	});
+  const specificDayZaffat = zaffat.filter((z) => {
+    const zaffeDate = new Date(z.date).toLocaleDateString("fr-CA");
+    return zaffeDate === day;
+  });
 
-	return (
-		<>
-			{specificDayZaffat.map((z, idx) => (
-				<SingleEntry key={idx} zaffe={z} />
-			))}
-		</>
-	);
+  return (
+    <>
+      {specificDayZaffat.map((z, idx) => (
+        <SingleEntry key={idx} zaffe={z} />
+      ))}
+    </>
+  );
 };
