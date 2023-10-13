@@ -5,9 +5,7 @@ const googleSheetsAPI =
 
 export const useZaffat = async () => {
   try {
-    const res = await fetch(googleSheetsAPI, {
-      cache: "no-store",
-    });
+    const res = await fetch(googleSheetsAPI);
 
     if (!res.ok) {
       throw new Error("Network response was not ok.");
