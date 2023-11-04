@@ -16,38 +16,10 @@ const config: Config = {
     },
   },
   plugins: [require("daisyui")],
-  daisyui: {
-    themes: [
-      "light",
-      "dark",
-      "cupcake",
-      "bumblebee",
-      "emerald",
-      "corporate",
-      "synthwave",
-      "retro",
-      "cyberpunk",
-      "valentine",
-      "halloween",
-      "garden",
-      "forest",
-      "aqua",
-      "lofi",
-      "pastel",
-      "fantasy",
-      "wireframe",
-      "black",
-      "luxury",
-      "dracula",
-      "cmyk",
-      "autumn",
-      "business",
-      "acid",
-      "lemonade",
-      "night",
-      "coffee",
-      "winter",
-    ],
-  },
+ daisyui: {
+		themes: true, // true: all themes | false: only light + dark | array: specific themes like this ["light", "dark", "cupcake"]
+		darkTheme: "dark", // name of one of the included themes for dark mode
+		logs: false, // Shows info about daisyUI version and used config in the console when building your CSS
+	  }
 };
 export default config;
